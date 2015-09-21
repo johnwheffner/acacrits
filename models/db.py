@@ -19,6 +19,14 @@ db.define_table(
 db.official.id.readable = False
 
 db.define_table(
+    'marshal',
+    Field('last_name', required=True),
+    Field('first_name', required=True),
+    Field('additional_names'),
+    Field('suffix'))
+db.marshal.id.readable = False
+
+db.define_table(
     'season',
     Field('year', 'integer', required=True, unique=True))
 

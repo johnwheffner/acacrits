@@ -25,6 +25,7 @@ response.google_analytics_id = None
 response.menu = [
     ('Athletes', False, URL('athlete', 'index'), []),
     ('Officials', False, URL('official', 'index'), []),
+    ('Marshals', False, URL('marshal', 'index'), []),
     ('Teams', False, URL('team', 'index'), [])
 ]
 
