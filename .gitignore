@@ -1,0 +1,8 @@
+errors/
+sessions/
+databases/
+cache/
+progress.log
+.kdev4
+.idea
+*.bak
