@@ -65,6 +65,7 @@ db.define_table(
 db.define_table(
     'team',
     Field('name', required=True, unique=True))
+db.team.id.readable = False
 
 db.define_table(
     'athleteteam',
