@@ -99,3 +99,28 @@ db.define_table(
     'prime',
     Field('participant_id', 'reference participant'),
     Field('description'))
+
+
+# Hard-coded tables.
+def _():
+    CURRENT_SEASON = 2015
+    SEASONS_TABLE = {
+        i+1: dict(year=year) for i, year in
+        enumerate(xrange(1996, CURRENT_SEASON+1))}
+    def update_table(table, table_data):
+        cur_table_data = db().select(table.ALL)
+        cur_keys = set()
+        for row in cur_table_data:
+            cur_keys.add(row.id)
+            non_id_vals = {k: v for k, v in row.items() if k != 'id'}
+            if row.id in table_data:
+                table[row.id] = table_data[row.id]
+            else:
+                del table[row.id]
+        for key, val in table_data.items():
+            if not key in cur_keys:
+                table.insert(**val)
+    update_table(db.season, SEASONS_TABLE)
+    db.commit()
+
+_()
