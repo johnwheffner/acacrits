@@ -39,14 +39,14 @@ db.define_table(
     Field('description', required=True, unique=True))
 
 db.define_table(
-    'raceday',
+    'race_day',
     Field('date', 'date', required=True),
     Field('conditions'),
     Field('temperature_f', 'double'))
 
 db.define_table(
-    'racedayofficial',
-    Field('raceday_id', 'reference raceday'),
+    'race_day_official',
+    Field('race_day_id', 'reference race_day'),
     Field('official_id', 'reference official'))
 
 db.define_table(
@@ -65,7 +65,7 @@ db.define_table(
 db.team.id.readable = False
 
 db.define_table(
-    'athleteteam',
+    'athlete_team',
     Field('athlete_id', 'reference athlete'),
     Field('team_id', 'reference team'),
     Field('season_id', 'reference season',
@@ -78,7 +78,7 @@ db.define_table(
     Field('race_id', 'reference race', required=True))
 
 db.define_table(
-    'racemarshal',
+    'race_marshal',
     Field('race_id', 'reference race', required=True),
     Field('marshal_id', 'reference marshal', required=True))
 
@@ -91,7 +91,7 @@ db.define_table(
     Field('point_prime', 'boolean'))
 
 db.define_table(
-    'subclassresult',
+    'subclass_result',
     Field('participant_id', 'reference participant', required=True),
     Field('subclass_id', 'reference race_subclass', required=True),
     Field('place', 'integer'),
