@@ -90,7 +90,8 @@ db.define_table(
     Field('place', 'integer'),
     Field('points', 'double'),
     Field('mar_place', 'integer'),
-    Field('point_prime', 'boolean'))
+    Field('point_prime', 'boolean'),
+    Field('laps_down', 'integer'))
 
 db.define_table(
     'subclass_result',
