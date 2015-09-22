@@ -35,12 +35,6 @@ db.define_table(
     Field('description', required=True, unique=True))
 
 db.define_table(
-    'race_class_season',
-    Field('race_class_id', 'reference race_class'),
-    Field('season_id', 'reference season',
-          requires=IS_IN_DB(db, db.season.id, '%(year)d')))
-
-db.define_table(
     'race_subclass',
     Field('description', required=True, unique=True))
 
@@ -111,10 +105,6 @@ db.define_table(
 
 # Hard-coded tables.
 def _():
-    CURRENT_SEASON = 2015
-    SEASONS_TABLE = {
-        i+1: dict(year=year) for i, year in
-        enumerate(xrange(1996, CURRENT_SEASON+1))}
     def update_table(table, table_data):
         cur_table_data = db().select(table.ALL)
         cur_keys = set()
@@ -128,7 +118,19 @@ def _():
         for key, val in table_data.items():
             if not key in cur_keys:
                 table.insert(**val)
+
+    CURRENT_SEASON = 2015
+    SEASONS_TABLE = {
+        i+1: dict(year=year) for i, year in
+        enumerate(xrange(1996, CURRENT_SEASON+1))}
     update_table(db.season, SEASONS_TABLE)
+
+    CLASSES = ['A', 'B', 'C', 'Masters 40+/Women', 'Juniors']
+    CLASSES_TABLE = {
+        i+1: dict(description=description)
+        for i, description in enumerate(CLASSES)}
+    update_table(db.race_class, CLASSES_TABLE)
+
     db.commit()
 
 _()
