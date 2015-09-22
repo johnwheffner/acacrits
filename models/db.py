@@ -57,7 +57,9 @@ db.define_table(
     Field('laps', 'integer'),
     Field('slow_lap_secs', 'double'),
     Field('fast_lap_secs', 'double'),
-    Field('average_lap_secs', 'double'))
+    Field('average_lap_secs', 'double'),
+    Field('starters', 'integer'),
+    Field('finish_time_secs', 'double'))
 
 db.define_table(
     'team',
