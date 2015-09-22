@@ -39,11 +39,6 @@ db.define_table(
     Field('description', required=True, unique=True))
 
 db.define_table(
-    'race_subclass_season',
-    Field('race_subclass_id', 'reference race_subclass'),
-    Field('race_class_season_id', 'reference race_class_season'))
-
-db.define_table(
     'raceday',
     Field('date', 'date', required=True),
     Field('conditions'),
@@ -130,6 +125,12 @@ def _():
         i+1: dict(description=description)
         for i, description in enumerate(CLASSES)}
     update_table(db.race_class, CLASSES_TABLE)
+
+    SUBCLASSES = ['Women', 'Juniors']
+    SUBCLASSES_TABLE = {
+        i+1:dict(description=description)
+        for i, description in enumerate(SUBCLASSES)}
+    update_table(db.race_subclass, SUBCLASSES_TABLE)
 
     db.commit()
 
