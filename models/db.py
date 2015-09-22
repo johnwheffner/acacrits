@@ -78,6 +78,11 @@ db.define_table(
     Field('race_id', 'reference race', required=True))
 
 db.define_table(
+    'racemarshal',
+    Field('race_id', 'reference race', required=True),
+    Field('marshal_id', 'reference marshal', required=True))
+
+db.define_table(
     'result',
     Field('participant_id', 'reference participant', required=True),
     Field('place', 'integer'),
