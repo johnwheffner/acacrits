@@ -103,8 +103,7 @@ db.define_table(
     Field('description'))
 
 
-# Hard-coded tables.
-def _():
+def load_hard_coded_data():
     def update_table(table, table_data):
         cur_table_data = db().select(table.ALL)
         cur_keys = set()
@@ -139,4 +138,6 @@ def _():
 
     db.commit()
 
-_()
+
+load_hard_coded_data()
+del load_hard_coded_data
